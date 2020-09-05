@@ -1,0 +1,52 @@
+{% extends "user_register/base.html" %}
+    
+
+{% block content %}
+
+<table class="table table-borderless">
+<thead class="border-bottom font-weight-bold">
+    <tr>
+        <td>Bookname</td>
+        <td>Author Name</td>
+        <td>Price</td>
+        <td>Genre</td>
+        <td>Description</td>
+        <td>
+            <a href="{% url 'Book_insert_form' %}" class="btn btn-outline-success">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+        </td>
+        
+    </tr>
+</thead> 
+<tbody>
+    {% for book in book_list %}
+    <tr>
+        <td>{{book.bookname}}</td>
+        {% for author in book.author_name.all %}
+            <td>{{author}}</td>
+        {% endfor %}
+        <td>{{book.price}}</td>
+        <td>{{book.genre}}</td>
+        <td>{{book.description}}</td>
+        <td>
+            <a href="{% url 'book_update' book.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            
+            <a href="{% url 'book_delete' book.id %}" class="btn text-secondary px-0">
+                <i class="far.fa-trash-alt.fa-lg.text-danger float-right"></i>
+            </a>
+
+
+            
+        </td>
+            
+
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock content %}
